@@ -1,34 +1,32 @@
-AFRAME.registerComponent("listener", {
-    init: function () {
-      console.log("listener");
-      var el = this.el;
-      this.box = document.getElementById('box').object3D;
-      this.rig = document.getElementById('rig');
-  
-      var self = this;
-      el.addEventListener("thumbstickmoved", this.logThumbstick.bind(this));
-      el.addEventListener("xbuttondown", function (evt) {
-        self.box.visible = !self.box.visible;
-      });
-    },
-  
-    logThumbstick: function (evt) {
-      if (evt.detail.y > 0.95) {
-        console.log("DOWN");
-      }
-      if (evt.detail.y < -0.95) {
-        console.log("UP");
-        //this.rig.setAttribute('position', {x: 1, y: 2, z: -3});
-      }
-      if (evt.detail.x < -0.95) {
-        console.log("LEFT");
-        // var pos = rig.object3D.position;
-        // pos.x -= 0.01;
-        // this.rig.setAttribute('position', pos);
-      }
-      if (evt.detail.x > 0.95) {
-        console.log("RIGHT");
-      }
-    },
-  });
-  
+const velocity = new THREE.Vector3(0, 0.1, 0);
+
+AFRAME.registerComponent('listener-right', {
+  init() {
+    // console.log('listener');
+    const { el } = this;
+    this.rig = document.getElementById('rig');
+    el.addEventListener('thumbstickmoved', this.logThumbstick.bind(this));
+  },
+
+  tick() {
+    velocity.multiplyScalar(0.95);
+    this.rig.object3D.position.add(velocity);
+  },
+
+  logThumbstick(evt) {
+    velocity.add(new THREE.Vector3(evt.detail.x * 0.01, 0, evt.detail.y * 0.01));
+  },
+});
+
+AFRAME.registerComponent('listener-left', {
+  init() {
+    // console.log('listener');
+    const { el } = this;
+    this.rig = document.getElementById('rig');
+    el.addEventListener('thumbstickmoved', this.logThumbstick.bind(this));
+  },
+
+  logThumbstick(evt) {
+    velocity.add(new THREE.Vector3(0, -evt.detail.y * 0.01, 0));
+  },
+});

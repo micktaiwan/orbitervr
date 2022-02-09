@@ -10,10 +10,11 @@ AFRAME.registerComponent('random-color', {
 });
 
 function getRandomColor() {
-  const letters = '0123456789ABCDEF';
+  const letters = '123456789';
   let color = '#';
+  const r = Math.floor(Math.random() * 9);
   for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
+    color += letters[r];
   }
   return color;
 }

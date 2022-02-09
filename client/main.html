@@ -25,10 +25,12 @@
       <img
         id="groundTexture"
         src="https://cdn.aframe.io/a-painter/images/floor.jpg"
+        crossorigin="anonymous"
       />
       <img
       id="skyTexture"
       src="https://cdn.aframe.io/a-painter/images/sky.jpg"
+      crossorigin="anonymous"
       />
       <a-mixin
         id="voxel"
@@ -38,25 +40,27 @@
         snap="offset: 0.25 0.25 0.25; snap: 0.5 0.5 0.5"
         class="collidable"
         intersection-spawn="event: click; mixin: voxel"
-        ammo-body="type: dynamic; emitCollisionEvents: true;"
+        ammo-body="type: static; emitCollisionEvents: true;"
         ammo-shape="type: box"
       ></a-mixin>
 
     </a-assets>
 
-    <a-entity id="rig" position="0 1.7 0" movement-controls="fly: true">
+    <a-entity id="rig" position="0 1.7 0">
       <a-entity id="camera" camera look-controls wasd-controls>
       </a-entity>
 
+
+      <!-- hands -->
       <a-entity
         laser-controls="hand: right"
         raycaster="objects: .collidable;"
-        listener
+        listener-right
       ></a-entity>
       <a-entity
         laser-controls="hand: left"
         raycaster="objects: .collidable;"
-        listener
+        listener-left
       ></a-entity>
     </a-entity>
 
@@ -117,17 +121,13 @@
     <a-entity
       id="box"
       cursor-listener
-      geometry="primitive: box"
-      material="color: blue"
+      geometry="primitive: box; height: 3; width: 3; depth: 3"
+      material="color: #345"
       position="-1 20 -11"
       rotation="0 25 25"
       shadow
       ammo-body="type: dynamic; emitCollisionEvents: true;"
       ammo-shape="type: box"
-      scale="3 3 3"
-      width="3"
-      height="3"
-      depth="3"
     ></a-entity>
 
     <!-- light blue box -->
@@ -149,7 +149,7 @@
 
     <!-- moving orange -->
     <a-box
-      position="0 1 -10"
+      position="0 0.5 -10"
       rotation="0 0 0"
       color="#F90"
       shadow
@@ -171,7 +171,6 @@
     src="#groundTexture"
     radius="32"
     height="0.1"
-    static-body
     intersection-spawn="event: click; mixin: voxel"
     ></a-cylinder>
 
