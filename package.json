@@ -10,7 +10,8 @@
   "dependencies": {
     "@babel/runtime": "^7.15.4",
     "jquery": "^3.6.0",
-    "meteor-node-stubs": "^1.1.0"
+    "meteor-node-stubs": "^1.1.0",
+    "networked-aframe": "^0.8.0"
   },
   "meteor": {
     "mainModule": {
