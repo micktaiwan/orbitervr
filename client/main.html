@@ -36,23 +36,26 @@
         material="shader: standard"
         random-color
         snap="offset: 0.25 0.25 0.25; snap: 0.5 0.5 0.5"
+        class="collidable"
+        intersection-spawn="event: click; mixin: voxel"
+        ammo-body="type: dynamic; emitCollisionEvents: true;"
+        ammo-shape="type: box"
       ></a-mixin>
 
     </a-assets>
 
     <a-entity id="rig" position="0 1.7 0" movement-controls="fly: true">
       <a-entity id="camera" camera look-controls wasd-controls>
-        <a-cursor intersection-spawn="event: click; mixin: voxel"></a-cursor>
       </a-entity>
 
       <a-entity
         laser-controls="hand: right"
-        raycaster="objects: .collidable; far: 5"
+        raycaster="objects: .collidable;"
         listener
       ></a-entity>
       <a-entity
         laser-controls="hand: left"
-        raycaster="objects: .links; far: 5; lineColor: red"
+        raycaster="objects: .collidable;"
         listener
       ></a-entity>
     </a-entity>
@@ -83,6 +86,8 @@
       position="0 -5 -5"
     ></a-entity>
 
+
+    <!-- cylinder -->
     <a-cylinder
       position="5 0.75 -3"
       radius="0.5"
@@ -142,14 +147,12 @@
       depth="1"
     ></a-box>
 
-    <!-- orange -->
+    <!-- moving orange -->
     <a-box
       position="0 1 -10"
       rotation="0 0 0"
       color="#F90"
       shadow
-      event-set__enter="_event: mouseenter; color: #8FF7FF"
-      event-set__leave="_event: mouseleave; color: #4CC3D9"
       velocity="0 0 0"
       toggle-velocity="axis: x; min: -10; max: 10;"
       ammo-body="type: static; emitCollisionEvents: true;"
@@ -159,14 +162,17 @@
       depth="1"
     ></a-box>
 
+    <!-- ground -->
     <a-cylinder
     id="ground"
     ammo-body="type: static"
     ammo-shape="type: cylinder"
+    class="collidable"
     src="#groundTexture"
     radius="32"
     height="0.1"
     static-body
+    intersection-spawn="event: click; mixin: voxel"
     ></a-cylinder>
 
     <a-sky id="bg" radius="30" src="#skyTexture" theta-length="90"></a-sky>
