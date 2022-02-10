@@ -13,9 +13,7 @@
 </head>
 
 <body>
-
   {{> scene}}
-
 </body>
 
 <template name="scene">
@@ -28,9 +26,9 @@
         crossorigin="anonymous"
       />
       <img
-      id="skyTexture"
-      src="https://cdn.aframe.io/a-painter/images/sky.jpg"
-      crossorigin="anonymous"
+        id="skyTexture"
+        src="https://cdn.aframe.io/a-painter/images/sky.jpg"
+        crossorigin="anonymous"
       />
       <a-mixin
         id="voxel"
@@ -43,11 +41,23 @@
         ammo-body="type: static; emitCollisionEvents: true;"
         ammo-shape="type: box"
       ></a-mixin>
-
     </a-assets>
 
     <a-entity id="rig" position="0 1.7 0">
+      <!-- camera -->
       <a-entity id="camera" camera look-controls wasd-controls>
+        <!-- head -->
+        <a-box
+          position="0 0 0"
+          rotation="0 0 0"
+          color="#fa9"
+          shadow
+          ammo-body="type: static; emitCollisionEvents: true;"
+          ammo-shape="type: box"
+          width="1"
+          height="1"
+          depth="0.5"
+        ></a-box>
       </a-entity>
 
 
@@ -89,7 +99,6 @@
       light="type: ambient; color: #f4f4f4; intensity: 0.5;"
       position="0 -5 -5"
     ></a-entity>
-
 
     <!-- cylinder -->
     <a-cylinder
@@ -164,14 +173,14 @@
 
     <!-- ground -->
     <a-cylinder
-    id="ground"
-    ammo-body="type: static"
-    ammo-shape="type: cylinder"
-    class="collidable"
-    src="#groundTexture"
-    radius="32"
-    height="0.1"
-    intersection-spawn="event: click; mixin: voxel"
+      id="ground"
+      ammo-body="type: static"
+      ammo-shape="type: cylinder"
+      class="collidable"
+      src="#groundTexture"
+      radius="32"
+      height="0.1"
+      intersection-spawn="event: click; mixin: voxel"
     ></a-cylinder>
 
     <a-sky id="bg" radius="30" src="#skyTexture" theta-length="90"></a-sky>
