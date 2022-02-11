@@ -16,4 +16,6 @@ Template.text.helpers({
         return this.value || "default text \n à la ligne";
     }
 
+});
+
 Template.text.events({});
