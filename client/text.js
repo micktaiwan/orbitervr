@@ -11,9 +11,9 @@ Template.text.onCreated(() => { });
 Template.text.onRendered(() => { });
 
 Template.text.helpers({
-  value() {
-    return this.value || 'default text';
-  },
-});
+
+    value: function () {
+        return this.value || "default text \n à la ligne";
+    }
 
 Template.text.events({});
