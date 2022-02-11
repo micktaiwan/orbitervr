@@ -50,6 +50,9 @@
     "editor.formatOnSave": true,
     "eslint.format.enable": true,
     "eslint.alwaysShowStatus": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
     "todohighlight.keywordsPattern": "XXX|TODO:|MMM",
     "html.format.wrapLineLength": 0,
     "editor.linkedEditing": true,

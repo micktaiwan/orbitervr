@@ -3,10 +3,12 @@
     "autofetch",
     "collidable",
     "Dayd",
+    "orbitervr",
     "raycaster",
     "templating",
     "Thumbstick",
     "voxel",
     "WASD"
-  ]
+  ],
+  "cSpell.ignorePaths": ["**/node_modules/**", "**/vendor/**", "*.json"]
 }
