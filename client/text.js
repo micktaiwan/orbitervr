@@ -3,17 +3,17 @@
 * https://www.davidfm.me
 */
 
+import { Template } from 'meteor/templating';
 import './text.html';
 
-Template.text.onCreated(function () { });
+Template.text.onCreated(() => { });
 
-Template.text.onRendered(function () { });
+Template.text.onRendered(() => { });
 
 Template.text.helpers({
-
-    value: function () {
-        return this.value || "default text";
-    }
+  value() {
+    return this.value || 'default text';
+  },
 });
 
 Template.text.events({});

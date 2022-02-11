@@ -1,7 +1,6 @@
 import { Template } from 'meteor/templating';
-// import { ReactiveVar } from 'meteor/reactive-var';
 
-import './text.js';
+import './text';
 import './main.html';
 
 Template.scene.onCreated(() => {
