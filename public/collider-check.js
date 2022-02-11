@@ -4,7 +4,7 @@ AFRAME.registerComponent('collider-check', {
   init() {
     this.el.addEventListener('raycaster-intersection', (evt) => {
       evt.detail.els.forEach((obj) => {
-        log(`HIT: ${obj.id || obj.tagName}`);
+        // log(`HIT: ${obj.id || obj.tagName}`);
       });
     });
   },

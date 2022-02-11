@@ -24,9 +24,30 @@ AFRAME.registerComponent('listener-left', {
     const { el } = this;
     this.rig = document.getElementById('rig');
     el.addEventListener('thumbstickmoved', this.logThumbstick.bind(this));
+    el.addEventListener('triggerdown', this.triggerdown.bind(this));
+    el.addEventListener('triggertouchstart', this.triggertouchstart.bind(this));
+    el.addEventListener('surfacedown', this.surfacedown.bind(this));
+    el.addEventListener('xbuttondown', this.xbuttondown.bind(this));
   },
 
   logThumbstick(evt) {
     velocity.add(new THREE.Vector3(0, -evt.detail.y * 0.01, 0));
+  },
+
+  triggerdown() {
+    log('triggerdown');
+  },
+
+  triggertouchstart() {
+    log('triggertouchstart');
+  },
+
+  surfacedown() {
+    log('surfacedown');
+  },
+
+  xbuttondown() {
+    log('xbuttondown');
+    app.menu.toggle();
   },
 });
