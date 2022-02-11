@@ -12,4 +12,7 @@ module.exports = {
   },
   rules: {
   },
+  globals: {
+    app: 'writable',
+  },
 };
