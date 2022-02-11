@@ -13,7 +13,6 @@ AFRAME.registerComponent('intersection-spawn', {
       const spawnEl = document.createElement('a-entity');
 
       log(data.event);
-      app.debug.set(data.event)
       // Snap intersection point to grid and offset from center.
       spawnEl.setAttribute('position', evt.detail.intersection.point);
 
