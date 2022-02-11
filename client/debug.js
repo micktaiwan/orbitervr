@@ -14,7 +14,7 @@ Template.debug.onRendered(() => { });
 Template.debug.helpers({
 
   value() {
-    return app.debug.get() || 'default text \n à la ligne';
+    return app.debug.get() || 'default text\na la line';
   },
 });
 
