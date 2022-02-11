@@ -5,7 +5,7 @@ AFRAME.registerComponent('collider-check', {
     this.el.addEventListener('raycaster-intersection', (evt) => {
       console.log('Player hit something!');
       evt.detail.els.forEach((obj) => {
-        obj.object3D.visible = false;
+        console.log(obj);
       });
     });
   },

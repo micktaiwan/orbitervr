@@ -18,6 +18,7 @@ module.exports = {
   globals: {
     AFRAME: 'readonly',
     THREE: 'readonly',
+    log: 'readonly',
     app: 'writable',
   },
 };

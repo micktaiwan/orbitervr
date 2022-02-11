@@ -8,7 +8,6 @@ Template.debug.onCreated(() => { });
 Template.debug.onRendered(() => { });
 
 Template.debug.helpers({
-
   value() {
     return app.debug.get() || 'default text\na la line';
   },
