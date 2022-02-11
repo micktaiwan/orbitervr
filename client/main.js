@@ -1,5 +1,7 @@
 import { Template } from 'meteor/templating';
 
+import '../imports/network/client.js';
+
 import './helpers';
 import './debug';
 import './text';
