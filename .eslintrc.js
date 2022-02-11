@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  parser: "@babel/eslint-parser",
+  parser: '@babel/eslint-parser',
   extends: [
     'airbnb-base',
     '@meteorjs/eslint-config-meteor',
@@ -11,11 +11,13 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    requireConfigFile: false
+    requireConfigFile: false,
   },
   rules: {
   },
   globals: {
+    AFRAME: 'readonly',
+    THREE: 'readonly',
     app: 'writable',
   },
 };

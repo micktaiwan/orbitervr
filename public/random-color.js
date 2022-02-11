@@ -1,13 +1,6 @@
 /**
  * Set random color on material.
  */
-AFRAME.registerComponent('random-color', {
-  dependencies: ['material'],
-
-  init() {
-    this.el.setAttribute('material', 'color', getRandomColor());
-  },
-});
 
 function getRandomColor() {
   const letters = '123456789';
@@ -18,3 +11,11 @@ function getRandomColor() {
   }
   return color;
 }
+
+AFRAME.registerComponent('random-color', {
+  dependencies: ['material'],
+
+  init() {
+    this.el.setAttribute('material', 'color', getRandomColor());
+  },
+});

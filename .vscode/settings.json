@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
+    "AFRAME",
     "autofetch",
     "collidable",
     "Dayd",
@@ -7,6 +8,7 @@
     "raycaster",
     "templating",
     "Thumbstick",
+    "thumbstickmoved",
     "voxel",
     "WASD"
   ],
