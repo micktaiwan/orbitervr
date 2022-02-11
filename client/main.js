@@ -1,6 +1,8 @@
 import { Template } from 'meteor/templating';
 
-import './text';
+import './helpers.js';
+import './debug.js';
+import './text.js';
 import './main.html';
 
 Template.scene.onCreated(() => {
