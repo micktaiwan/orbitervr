@@ -9,7 +9,7 @@ Template.debug.onRendered(() => { });
 
 Template.debug.helpers({
   value() {
-    return app.debug.get() || 'default text\na la line';
+    return app.debug.get() || '';
   },
 });
 

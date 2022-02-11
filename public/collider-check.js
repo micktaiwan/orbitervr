@@ -3,9 +3,8 @@ AFRAME.registerComponent('collider-check', {
 
   init() {
     this.el.addEventListener('raycaster-intersection', (evt) => {
-      console.log('Player hit something!');
       evt.detail.els.forEach((obj) => {
-        console.log(obj);
+        log(`HIT: ${obj.id || obj.tagName}`);
       });
     });
   },

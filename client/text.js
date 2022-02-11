@@ -12,7 +12,7 @@ Template.text.helpers({
   },
 
   value() {
-    return this.value || 'default text \n à la ligne';
+    return this.value || '';
   },
 
   color() {
