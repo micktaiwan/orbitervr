@@ -1,9 +1,9 @@
 import { Template } from 'meteor/templating';
 
 // import '../imports/network/client.js';
+import '../imports/classes/classMenu.js';
 
 import './helpers';
-import './classMenu';
 import './registerHelpers';
 import './text';
 import './menu';
