@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 import { Meteor } from 'meteor/meteor';
 
-import '../imports/network/server.js';
+// import '../imports/network/server.js';
 
 Meteor.startup(() => {
-  // code to run on server at startup
+  // Meteor.users.update({ }, { $set: { position: { x: 0, y: 0, z: 0 }, rotation: { x: 0, y: 0, z: 0 }, head: { rotation: { x: 0, y: 0, z: 0 } } } }, { multi: true });
 });
 
 Meteor.methods({
@@ -24,5 +24,5 @@ Meteor.onConnection(function(connection) {
 });
 
 Meteor.publish('players', function() {
-  return Meteor.users.find({ _id: { $ne: this.userId }, 'status.online': true }, { fields: { username: 1, position: 1, rotation: 1, head: 1 } });
+  return Meteor.users.find({ _id: { $ne: this.userId } }, { fields: { username: 1, position: 1, rotation: 1, head: 1, 'status.online': 1 } });
 });
