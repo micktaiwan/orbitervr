@@ -16,7 +16,7 @@ Template.scene.onCreated(function() {
 
 Template.scene.helpers({
   players() {
-    return Meteor.users.find();
+    return Meteor.users.find({ position: { $exists: true } });
   },
 });
 
