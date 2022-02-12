@@ -9,6 +9,7 @@ Meteor.startup(() => {
 
 Meteor.methods({
   log(msg) {
+    msg = JSON.stringify(msg);
     check(msg, String);
     console.log(msg);
   },
