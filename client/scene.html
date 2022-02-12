@@ -9,7 +9,7 @@
 
     <a-entity id="rig" position="0 0 0" player wasd-controls>
       <!-- camera -->
-      <a-entity id="camera" camera look-controls>
+      <a-entity id="camera" camera look-controls player-head>
         {{> debug}}
       </a-entity>
 
@@ -24,7 +24,8 @@
       {{!-- {{log this}} --}}
       <a-entity position="{{position.x}} {{position.y}} {{position.z}}" rotation="{{rotation.x}} {{rotation.y}} {{rotation.z}}">
         <a-entity position="0 1 0" scale={{scale}} text="color: #fff; align: center; value: {{username}};"></a-entity>
-        <a-box class="collidable" material="color: #333" width="0.5" height="1.7" depth="0.3"></a-box>
+        <a-box class="collidable" material="color: #FEA" width="0.20" height="0.25" depth="0.1" position="{{head.position.x}} {{head.position.y}} {{head.position.z}}" rotation="{{head.rotation.x}} {{head.rotation.y}} {{head.rotation.z}}"></a-box>
+        <a-box position="0 -1 0.05" class="collidable" material="color: #333" width="0.4" height="1.7" depth="0.2"></a-box>
       </a-entity>
     {{/each}}
 

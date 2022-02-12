@@ -20,9 +20,9 @@ Meteor.methods({
 });
 
 Meteor.onConnection(function(connection) {
-  console.log(connection.clientAddress, connection.httpHeaders.host, connection.httpHeaders['user-agent']);
+  console.log(new Date(), connection.clientAddress, connection.httpHeaders.host, connection.httpHeaders['user-agent']);
 });
 
 Meteor.publish('players', function() {
-  return Meteor.users.find({ _id: { $ne: this.userId }, 'status.online': true }, { fields: { username: 1, position: 1, rotation: 1 } });
+  return Meteor.users.find({ _id: { $ne: this.userId }, 'status.online': true }, { fields: { username: 1, position: 1, rotation: 1, head: 1 } });
 });

@@ -11,8 +11,8 @@ AFRAME.registerComponent('listener-right', {
   tick() {
     velocity.multiplyScalar(0.9);
     this.rig.object3D.position.add(velocity);
-    if (this.rig.object3D.position.y < 0) {
-      this.rig.object3D.position.y = 0;
+    if (this.rig.object3D.position.y < 1.7) {
+      this.rig.object3D.position.y = 1.7;
     }
   },
 
