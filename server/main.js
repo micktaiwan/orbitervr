@@ -25,5 +25,5 @@ Meteor.onConnection(function(connection) {
 });
 
 Meteor.publish('players', function() {
-  return Meteor.users.find({ _id: { $ne: this.userId }, 'status.online': true }, { fields: { username: 1, position: 1, rotation: 1, head: 1, 'status.online': 1 } });
+  return Meteor.users.find({ _id: { $ne: this.userId } }, { fields: { username: 1, position: 1, rotation: 1, head: 1, 'status.online': 1, createdAt: 1 } });
 });

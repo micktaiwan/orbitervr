@@ -16,7 +16,10 @@ Template.scene.onCreated(function() {
 
 Template.scene.helpers({
   players() {
-    return Meteor.users.find({ position: { $exists: true } });
+    return Meteor.users.find({ 'status.online': true, position: { $exists: true } }, { sort: { createdAt: -1 } });
+  },
+  accounts() {
+    return Meteor.users.find({ }, { sort: { createdAt: -1 } });
   },
 });
 

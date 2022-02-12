@@ -36,7 +36,7 @@ AFRAME.registerComponent('listener-left', {
   logThumbstick(evt) {
     velocity.add(new THREE.Vector3(0, -evt.detail.y * 0.01, 0));
     // rotation
-    this.rig.object3D.rotation.y -= evt.detail.x * 0.02;
+    this.rig.object3D.rotation.y -= evt.detail.x * 0.05;
   },
 
   triggerdown() {
