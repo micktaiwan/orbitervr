@@ -6,7 +6,9 @@ Meteor.startup(() => {
 });
 
 Meteor.methods({
-  log(m) {
-    console.log(m);
+  log(msg) {
+    check(msg, String);
+    /* eslint-disable no-console */
+    console.log(msg);
   },
 });
