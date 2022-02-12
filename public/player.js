@@ -1,3 +1,5 @@
+const equals = (a, b) => a.x === b.x && a.y === b.y && a.z === b.z;
+
 AFRAME.registerComponent('player', {
   init() {
     this.oldPos = new THREE.Vector3();
@@ -13,7 +15,7 @@ AFRAME.registerComponent('player', {
     rot.x = Math.round(rot.x * 1000) / 1000;
     rot.y = Math.round(rot.y * 1000) / 1000;
     rot.z = Math.round(rot.z * 1000) / 1000;
-    if (pos.equals(this.oldPos) && rot.equals(this.oldRot)) return;
+    if (equals(pos, this.oldPos) && equals(rot, this.oldRot)) return;
     this.oldPos.copy(pos);
     this.oldRot.copy(rot);
     Meteor.call('updatePlayer', { position: pos, rotation: { x: THREE.Math.radToDeg(rot.x), y: THREE.Math.radToDeg(rot.y), z: THREE.Math.radToDeg(rot.z) } });
@@ -36,7 +38,7 @@ AFRAME.registerComponent('player-head', {
     rot.y = Math.round(rot.y * 1000) / 1000;
     rot.z = Math.round(rot.z * 1000) / 1000;
     // if (pos.equals(this.oldPos) && rot.equals(this.oldRot)) return;
-    if (rot.equals(this.oldRot)) return;
+    if (equals(rot, this.oldRot)) return;
     // this.oldPos.copy(pos);
     this.oldRot.copy(rot);
     // Meteor.call('updatePlayer', { 'head.position': pos, 'head.rotation': { x: THREE.Math.radToDeg(rot.x), y: THREE.Math.radToDeg(rot.y), z: THREE.Math.radToDeg(rot.z) } });
