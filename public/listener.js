@@ -9,7 +9,7 @@ AFRAME.registerComponent('listener-right', {
   },
 
   tick() {
-    velocity.multiplyScalar(0.95);
+    velocity.multiplyScalar(0.9);
     this.rig.object3D.position.add(velocity);
   },
 

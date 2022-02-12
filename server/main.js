@@ -15,7 +15,6 @@ Meteor.methods({
   updatePlayer(data) {
     check(data, Object);
     const id = Meteor.userId();
-    console.log(id, data);
     Meteor.users.update(id, { $set: data });
   },
 });
@@ -25,5 +24,5 @@ Meteor.onConnection(function(connection) {
 });
 
 Meteor.publish('players', function() {
-  return Meteor.users.find({ _id: { $ne: this.userId } });
+  return Meteor.users.find({ _id: { $ne: this.userId }, 'status.online': true }, { fields: { username: 1, position: 1 } });
 });

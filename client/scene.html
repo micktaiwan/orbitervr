@@ -7,9 +7,9 @@
       <a-mixin id="voxel" geometry="primitive: box; height: 0.5; width: 0.5; depth: 0.5" material="shader: standard" random-color snap="offset: 0.25 0.25 0.25; snap: 0.5 0.5 0.5" class="collidable" intersection-spawn="event: click; mixin: voxel" ammo-body="type: static; emitCollisionEvents: true;" ammo-shape="type: box"></a-mixin>
     </a-assets>
 
-    <a-entity id="rig" position="0 1.7 0" player look-controls wasd-controls>
+    <a-entity id="rig" position="0 0 0" player wasd-controls>
       <!-- camera -->
-      <a-entity id="camera" camera>
+      <a-entity id="camera" camera look-controls>
         {{> debug}}
       </a-entity>
 
@@ -21,8 +21,10 @@
 
     <!-- players -->
     {{#each players}}
+      {{!-- {{log this}} --}}
       <a-entity position="{{position.x}} {{position.y}} {{position.z}}" rotation="{{rotation}}">
-        {{>text position="0 1 0" value=username color="#fff" scale="0.5 0.5 0.5"}}
+        <a-entity position="0 1 0" scale={{scale}} text="color: #fff; align: center; value: {{username}};"></a-entity>
+
 
         <a-box class="collidable" material="color: #333" width="0.5" height="1.7" depth="0.3"></a-box>
       </a-entity>
