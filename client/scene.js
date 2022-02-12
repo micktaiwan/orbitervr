@@ -10,10 +10,14 @@ import './menu';
 import './debug';
 import './scene.html';
 
-Template.scene.onCreated(() => {
+Template.scene.onCreated(function() {
+  this.subscribe('players');
 });
 
 Template.scene.helpers({
+  players() {
+    return Meteor.users.find();
+  },
 });
 
 Template.scene.events({
