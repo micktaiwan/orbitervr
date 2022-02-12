@@ -43,12 +43,17 @@
     <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.5;" position="0 -5 -5"></a-entity>
 
     <!-- cylinder -->
-    <a-cylinder position="5 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow class="collidable" event-set__enter="_event: mouseenter; _target: #cylinderText; visible: true" event-set__leave="_event: mouseleave; _target: #cylinderText; visible: false" animation="startEvents: click; property: scale;
+    <a-cylinder position="5 0.75 -3" radius="0.5" height="1.5" color="#00C65D" shadow class="collidable" event-set__enter="_event: mouseenter; _target: #cylinderText; visible: true" event-set__leave="_event: mouseleave; _target: #cylinderText; visible: false" animation="startEvents: click; property: scale;
         from: 2 2 2; to: 1 1 1; dur: 500">
       >
       <a-text id="cylinderText" value="Hello Dayd" align="center" color="#FFF" visible="false" position="0 -0.55 0.55" geometry="primitive: plane; width: 1.75" material="color: #333"></a-text>
     </a-cylinder>
 
+    <!-- cylinder 2 -->
+    <a-cylinder position="4 0.75 -3" radius="0.5" height="1.5" color="#FF0000" shadow class="collidable" event-set__enter="_event: mouseenter; color: #0000FF" event-set__leave="_event: mouseleave; color: #00FF00" animation="startEvents: click; property: scale;
+        from: 2 2 2; to: 1 1 1; dur: 500">
+      >
+    </a-cylinder>
     <!-- big box -->
     <a-entity id="box" cursor-listener geometry="primitive: box; height: 3; width: 3; depth: 3" material="color: #345" position="-1 20 -11" rotation="0 25 25" shadow ammo-body="type: dynamic; emitCollisionEvents: true;" ammo-shape="type: box"></a-entity>
 

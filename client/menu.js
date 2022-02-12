@@ -7,4 +7,9 @@ Template.menu.onRendered(function() {});
 
 Template.menu.helpers({});
 
-Template.menu.events({});
+Template.menu.events({
+
+  'click #menu'(e, tpl) {
+    log('menu clicked');
+  },
+});
