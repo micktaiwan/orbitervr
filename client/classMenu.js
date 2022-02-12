@@ -1,3 +1,5 @@
+import { ReactiveVar } from 'meteor/reactive-var';
+
 class Menu {
   constructor() {
     this.isOpenReact = new ReactiveVar(false);
