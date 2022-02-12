@@ -22,10 +22,8 @@
     <!-- players -->
     {{#each players}}
       {{!-- {{log this}} --}}
-      <a-entity position="{{position.x}} {{position.y}} {{position.z}}" rotation="{{rotation}}">
+      <a-entity position="{{position.x}} {{position.y}} {{position.z}}" rotation="{{rotation.x}} {{rotation.y}} {{rotation.z}}">
         <a-entity position="0 1 0" scale={{scale}} text="color: #fff; align: center; value: {{username}};"></a-entity>
-
-
         <a-box class="collidable" material="color: #333" width="0.5" height="1.7" depth="0.3"></a-box>
       </a-entity>
     {{/each}}

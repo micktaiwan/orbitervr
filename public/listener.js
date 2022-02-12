@@ -11,6 +11,9 @@ AFRAME.registerComponent('listener-right', {
   tick() {
     velocity.multiplyScalar(0.9);
     this.rig.object3D.position.add(velocity);
+    if (this.rig.object3D.position.y < 0) {
+      this.rig.object3D.position.y = 0;
+    }
   },
 
   logThumbstick(evt) {
@@ -32,6 +35,8 @@ AFRAME.registerComponent('listener-left', {
 
   logThumbstick(evt) {
     velocity.add(new THREE.Vector3(0, -evt.detail.y * 0.01, 0));
+    // rotation
+    this.rig.object3D.rotation.y -= evt.detail.x * 0.02;
   },
 
   triggerdown() {
