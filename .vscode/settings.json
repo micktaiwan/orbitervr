@@ -8,11 +8,15 @@
     "ntype",
     "orbitervr",
     "raycaster",
+    "surfacedown",
     "templating",
     "Thumbstick",
     "thumbstickmoved",
+    "triggerdown",
+    "triggertouchstart",
     "voxel",
-    "WASD"
+    "WASD",
+    "xbuttondown"
   ],
   "cSpell.ignorePaths": ["**/node_modules/**", "**/vendor/**", "*.json"]
 }
