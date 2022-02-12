@@ -12,10 +12,6 @@ AFRAME.registerComponent('intersection-spawn', {
       // Create element.
       const spawnEl = document.createElement('a-entity');
 
-      log(data.event);
-      log(evt.detail.intersection.point);
-      log(evt.detail.intersection.distance);
-
       // Snap intersection point to grid and offset from center.
       spawnEl.setAttribute('position', evt.detail.intersection.point);
       spawnEl.setAttribute('class', 'collidable');
