@@ -44,7 +44,7 @@
     {{!-- accounts --}}
     <a-text value="Accounts" position="-10 6.5 -12" rotation="0 45 0" color="#fff"></a-text>
     {{#each accounts}}
-      <a-text value="{{username}} {{formatDate createdAt "dd-MM-yy" }}" position="-10 6.{{@index}} -12" rotation="0 45 0" scale="0.5 0.5 0.5" color="#ddd"></a-text>
+      <a-text font="monoid" value="{{pad username 15}} {{formatDate createdAt "dd-MMM-yy HH:mm" }}" position="-10 {{sub 6.2 (concat '0.' @index)}} -12" rotation="0 45 0" scale="0.5 0.5 0.5" color="#ddd"></a-text>
     {{/each}}
 
 

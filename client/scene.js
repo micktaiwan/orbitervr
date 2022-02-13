@@ -11,12 +11,13 @@ import './debug';
 import './scene.html';
 
 Template.scene.onCreated(function() {
+  this.subscribe('userData');
   this.subscribe('players');
 });
 
 Template.scene.helpers({
   players() {
-    return Meteor.users.find({ 'status.online': true, position: { $exists: true } }, { sort: { createdAt: -1 } });
+    return Meteor.users.find({ 'status.online': true, position: { $exists: true } });
   },
   accounts() {
     return Meteor.users.find({ }, { sort: { createdAt: -1 } });
