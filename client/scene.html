@@ -1,14 +1,15 @@
 <template name="scene">
-  <a-scene id="scene" physics="driver: ammo">
+  <a-scene id="scene" physics="driver: ammo" shadow="type: pcf; autoUpdate: false">
     <a-entity cursor="rayOrigin:mouse"></a-entity>
     <a-assets>
       <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg" crossorigin="anonymous" />
       <img id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg" crossorigin="anonymous" />
+      <a-mixin id="sun" geometry="primitive: sphere; radius: 1.5" material="color: #FFD; shader: flat" light="color: #FFD; distance: 120; intensity: 1; type: point; castShadow: false; shadowCameraVisible: false;"></a-mixin>
     </a-assets>
 
     <a-entity id="rig" player wasd-controls="fly: true" position="0 0 0" rotation="0 0 0">
       <!-- camera -->
-      <a-entity id="camera" camera look-controls player-head position="0 -0.5 0" rotation="0 0 0">
+      <a-entity id="camera" camera look-controls player-head position="0 1.5 5" rotation="0 0 0">
         {{> debug}}
       </a-entity>
 
@@ -21,18 +22,19 @@
     {{#each players}}
       <a-entity position="{{position.x}} {{position.y}} {{position.z}}" rotation="{{rotation.x}} {{rotation.y}} {{rotation.z}}">
         {{!-- head --}}
-        <a-box class="collidable" material="color: #FEA" width="0.20" height="0.25" depth="0.1" position="{{head.position.x}} {{head.position.y}} {{head.position.z}}" rotation="{{head.rotation.x}} {{head.rotation.y}} {{head.rotation.z}}">
+        <a-box shadow class="collidable" material="color: #FEA" width="0.20" height="0.25" depth="0.1" position="{{head.position.x}} {{head.position.y}} {{head.position.z}}" rotation="{{head.rotation.x}} {{head.rotation.y}} {{head.rotation.z}}" ammo-body="type: kinematic; emitCollisionEvents: true;" ammo-shape="type: box">
           {{!-- username --}}
-          <a-text position="0 0.3 0" rotation="0 180 0" align="center" color="#fff" value="{{username}}" side="double"></a-text>
+          <a-text position=" 0 0.3 0" rotation="0 180 0" align="center" color="#fff" value="{{username}}" side="double">
+          </a-text>
         </a-box>
         {{!-- body --}}
-        <a-box position="0 -1 0.05" class="collidable" material="color: #333" width="0.4" height="1.5" depth="0.2"></a-box>
+        <a-box shadow position="0 -1 0.05" class="collidable" material="color: #333" width="0.4" height="1.5" depth="0.2" ammo-body="type: kinematic; emitCollisionEvents: true;" ammo-shape="type: box"></a-box>
       </a-entity>
     {{/each}}
 
     <!-- cubes -->
     {{#each cubes}}
-      <a-box intersection-spawn="event: click;" position="{{position.x}} {{position.y}} {{position.z}}" rotation="{{rotation.x}} {{rotation.y}} {{rotation.z}}" class="collidable" random-color width="0.5" height="0.5" depth="0.5"></a-box>
+      <a-box shadow intersection-spawn="event: click;" position="{{position.x}} {{position.y}} {{position.z}}" rotation="{{rotation.x}} {{rotation.y}} {{rotation.z}}" class="collidable" random-color width="0.5" height="0.5" depth="0.5" mass="100" ammo-body="type: dynamic; emitCollisionEvents: true;" ammo-shape="type: box"></a-box>
     {{/each}}
 
     <!-- texts -->
@@ -40,9 +42,16 @@
     <a-text value="WASD, ou joystick" position="-1.5 5 -10" color="#fff" side="double"></a-text>
     <a-sky color="#333333"></a-sky>
 
-    <a-entity light="type: point; color: #fff; intensity: 0.8; distance: 0" position="0 0 0"></a-entity>
-    <a-entity light="type: point; color: #f4f4f4; intensity: 0.5; distance: 0" position="-20 -7 -40"></a-entity>
-    <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.5;" position="0 -5 -5"></a-entity>
+
+    {{!-- lights --}}
+
+    <a-entity light="type: point; color: #fff; intensity: 0.4; distance: 0; castShadow: true; shadowCameraVisible: false;" position="0 1 0"></a-entity>
+    <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.8; castShadow: true; shadowCameraVisible: false;" position="0 1 0"></a-entity>
+
+    <a-entity animation="property: rotation; to: 0 0 360; dur: 360000; easing: linear; loop: true">
+      <a-entity mixin="sun" position="31 0 0"></a-entity>
+    </a-entity>
+
 
     {{!-- accounts --}}
     <a-text value="Last logins" position="-10 6.5 -12" rotation="0 45 0" color="#fff" side="double"></a-text>
@@ -62,17 +71,17 @@
         from: 2 2 2; to: 1 1 1; dur: 500">
       >
     </a-cylinder>
-    <!-- big box -->
-    <a-entity id="box" cursor-listener geometry="primitive: box; height: 3; width: 3; depth: 3" material="color: #345" position="-1 20 -11" rotation="0 25 25" shadow ammo-body="type: dynamic; emitCollisionEvents: true;" ammo-shape="type: box"></a-entity>
+    <!-- big sphere -->
+    <a-sphere id="box" cursor-listener material="color: #345" position="-1 15 -10" mass="0.01" rotation="0 0 0" radius="3" shadow ammo-body="type: dynamic; emitCollisionEvents: true;" ammo-shape="type: cylinder"></a-sphere>
 
     <!-- light blue box -->
     <a-box position="2 4 -10" rotation="0 0 0" color="#4CC3D9" shadow event-set__enter="_event: mouseenter; color: #8FF7FF" event-set__leave="_event: mouseleave; color: #4CC3D9" velocity="0 0 0" toggle-velocity="axis: x; min: -10; max: 10;" ammo-body="type: dynamic; emitCollisionEvents: true;" ammo-shape="type: box" width="1" height="1" depth="1"></a-box>
 
     <!-- moving orange -->
-    <a-box position="0 0.5 -10" rotation="0 0 0" color="#F90" shadow velocity="0 0 0" toggle-velocity="axis: x; min: -10; max: 10;" ammo-body="type: static; emitCollisionEvents: true;" ammo-shape="type: box" width="1" height="1" depth="1"></a-box>
+    <a-box position="0 0.5 -10" rotation="0 0 0" color="#F90" shadow velocity="0 0 0" toggle-velocity="axis: x; min: -10; max: 10;" ammo-body="type: kinematic; emitCollisionEvents: true;" ammo-shape="type: box" width="1" height="1" depth="1"></a-box>
 
     <!-- ground -->
-    <a-cylinder id="ground" ammo-body="type: static" ammo-shape="type: cylinder" class="collidable" src="#groundTexture" radius="32" height="0.1" intersection-spawn="event: click;"></a-cylinder>
+    <a-cylinder id="ground" shadow="cast: false; receive: true" ammo-body="type: static" ammo-shape="type: cylinder" class="collidable" src="#groundTexture" radius="32" height="0.1" intersection-spawn="event: click;"></a-cylinder>
 
     <a-sky id="bg" radius="30" src="#skyTexture" theta-length="90"></a-sky>
   </a-scene>

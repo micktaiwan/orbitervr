@@ -16,7 +16,7 @@ Template.scene.onCreated(function() {
     FlowRouter.go('/');
     return;
   }
-  this.subscribe('userData');
+  // this.subscribe('userData');
   this.subscribe('players');
   this.subscribe('cubes');
 });
