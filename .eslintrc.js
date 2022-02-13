@@ -62,7 +62,14 @@ module.exports = {
   globals: {
     AFRAME: 'readonly',
     THREE: 'readonly',
+
+    // functions
     log: 'readonly',
+
+    // objects
     app: 'writable',
+
+    // collections
+    Cubes: 'writable',
   },
 };

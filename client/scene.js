@@ -13,6 +13,7 @@ import './scene.html';
 Template.scene.onCreated(function() {
   this.subscribe('userData');
   this.subscribe('players');
+  this.subscribe('cubes');
 });
 
 Template.scene.helpers({
@@ -21,6 +22,9 @@ Template.scene.helpers({
   },
   accounts() {
     return Meteor.users.find({ }, { sort: { createdAt: -1 } });
+  },
+  cubes() {
+    return Cubes.find({});
   },
 });
 

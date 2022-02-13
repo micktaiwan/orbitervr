@@ -9,21 +9,15 @@ AFRAME.registerComponent('intersection-spawn', {
     const { el } = this;
 
     el.addEventListener(data.event, evt => {
-      // Create element.
-      const spawnEl = document.createElement('a-entity');
+      const { point } = evt.detail.intersection;
+      const snap = { x: 0.5, y: 0.5, z: 0.5 };
+      const offset = { x: 0.25, y: 0.25, z: 0.25 };
+      // stick to the grid
+      point.x = Math.floor(point.x / snap.x) * snap.x + offset.x;
+      point.y = Math.floor(point.y / snap.y) * snap.y + offset.y;
+      point.z = Math.floor(point.z / snap.z) * snap.z + offset.z;
 
-      // Snap intersection point to grid and offset from center.
-      spawnEl.setAttribute('position', evt.detail.intersection.point);
-      spawnEl.setAttribute('class', 'collidable');
-
-      // Set components and properties.
-      Object.keys(data).forEach(name => {
-        if (name === 'event') { return; }
-        AFRAME.utils.entity.setComponentProperty(spawnEl, name, data[name]);
-      });
-
-      // Append to scene.
-      el.sceneEl.appendChild(spawnEl);
+      Meteor.call('cubesInsert', { position: point, color: '#666' });
     });
   },
 });

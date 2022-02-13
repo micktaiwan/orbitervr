@@ -4,7 +4,6 @@
     <a-assets>
       <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg" crossorigin="anonymous" />
       <img id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg" crossorigin="anonymous" />
-      <a-mixin id="voxel" geometry="primitive: box; height: 0.5; width: 0.5; depth: 0.5" material="shader: standard" random-color snap="offset: 0.25 0.25 0.25; snap: 0.5 0.5 0.5" class="collidable" intersection-spawn="event: click; mixin: voxel" ammo-body="type: static; emitCollisionEvents: true;" ammo-shape="type: box"></a-mixin>
     </a-assets>
 
     <a-entity id="rig" player wasd-controls="fly: true" position="0 0 0" rotation="0 0 0">
@@ -31,6 +30,11 @@
       </a-entity>
     {{/each}}
 
+    <!-- cubes -->
+    {{#each cubes}}
+      <a-box intersection-spawn="event: click;" position="{{position.x}} {{position.y}} {{position.z}}" rotation="{{rotation.x}} {{rotation.y}} {{rotation.z}}" class="collidable" random-color width="0.5" height="0.5" depth="0.5"></a-box>
+    {{/each}}
+
     <!-- texts -->
     {{> text value="Bon ben c'est deja ca" position="-1.5 5.3 -10" color="#fff" scale="2 2 2"}}
     <a-text value="WASD, ou joystick" position="-1.5 5 -10" color="#fff" side="double"></a-text>
@@ -45,7 +49,6 @@
     {{#each accounts}}
       <a-text font="monoid" value="{{pad username 15}} {{formatDate createdAt "dd-MMM-yy HH:mm" }}" position="-10 {{sub 6.2 (concat '0.' @index)}} -12" rotation="0 45 0" scale="0.5 0.5 0.5" color="#bbb" side="double"></a-text>
     {{/each}}
-
 
     <!-- cylinder -->
     <a-cylinder position="5 0.75 -3" radius="0.5" height="1.5" color="#00C65D" shadow class="collidable" event-set__enter="_event: mouseenter; _target: #cylinderText; visible: true" event-set__leave="_event: mouseleave; _target: #cylinderText; visible: false" animation="startEvents: click; property: scale;
@@ -69,7 +72,7 @@
     <a-box position="0 0.5 -10" rotation="0 0 0" color="#F90" shadow velocity="0 0 0" toggle-velocity="axis: x; min: -10; max: 10;" ammo-body="type: static; emitCollisionEvents: true;" ammo-shape="type: box" width="1" height="1" depth="1"></a-box>
 
     <!-- ground -->
-    <a-cylinder id="ground" ammo-body="type: static" ammo-shape="type: cylinder" class="collidable" src="#groundTexture" radius="32" height="0.1" intersection-spawn="event: click; mixin: voxel"></a-cylinder>
+    <a-cylinder id="ground" ammo-body="type: static" ammo-shape="type: cylinder" class="collidable" src="#groundTexture" radius="32" height="0.1" intersection-spawn="event: click;"></a-cylinder>
 
     <a-sky id="bg" radius="30" src="#skyTexture" theta-length="90"></a-sky>
   </a-scene>

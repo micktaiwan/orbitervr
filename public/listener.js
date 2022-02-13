@@ -11,8 +11,8 @@ AFRAME.registerComponent('listener-right', {
   },
 
   tick(time, delta) {
-    velocity.multiplyScalar(0.95);
-    rotVel *= 0.95;
+    velocity.multiplyScalar(0.97);
+    rotVel *= 0.97;
 
     // Get movement vector and translate position.
     // this.rig.object3D.position.add(velocity);
@@ -64,6 +64,7 @@ AFRAME.registerComponent('listener-left', {
     el.addEventListener('thumbstickdown', this.thumbstickdown.bind(this));
     el.addEventListener('surfacedown', this.surfacedown.bind(this));
     el.addEventListener('xbuttondown', this.xbuttondown.bind(this));
+    el.addEventListener('ybuttondown', this.ybuttondown.bind(this));
   },
 
   logThumbstick(evt) {
@@ -79,11 +80,14 @@ AFRAME.registerComponent('listener-left', {
   },
 
   surfacedown() {
-    log('surfacedown');
+    // log('surfacedown');
   },
 
   xbuttondown() {
-    log('xbuttondown');
     app.menu.toggle();
+  },
+
+  ybuttondown() {
+    Meteor.call('undoCubeInsert');
   },
 });
