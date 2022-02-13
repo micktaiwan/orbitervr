@@ -45,9 +45,9 @@
     <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.5;" position="0 -5 -5"></a-entity>
 
     {{!-- accounts --}}
-    <a-text value="Accounts" position="-10 6.5 -12" rotation="0 45 0" color="#fff" side="double"></a-text>
+    <a-text value="Last logins" position="-10 6.5 -12" rotation="0 45 0" color="#fff" side="double"></a-text>
     {{#each accounts}}
-      <a-text font="monoid" value="{{pad username 15}} {{formatDate createdAt "dd-MMM-yy HH:mm" }}" position="-10 {{sub 6.2 (concat '0.' @index)}} -12" rotation="0 45 0" scale="0.5 0.5 0.5" color="#bbb" side="double"></a-text>
+      <a-text font="monoid" value="{{pad username 15}} {{formatDate status.lastLogin.date "dd-MMM-yy HH:mm" }}" position="-10 {{sub 6.2 (concat '0.' @index)}} -12" rotation="0 45 0" scale="0.5 0.5 0.5" color="#bbb" side="double"></a-text>
     {{/each}}
 
     <!-- cylinder -->
