@@ -1,5 +1,5 @@
 <template name="text">
   {{#if value}}
-    <a-entity id="{{id}}" font="roboto" class={{class}} plane-padder="padding: 0.1" position={{position}} scale={{scale}} geometry="primitive: plane; width: auto; height: auto" material="color: #333" text="color: {{color}}; align: left; value: {{value}}; width: 2; "></a-entity>
+    <a-entity id="{{id}}" font="roboto" class={{class}} plane-padder="padding: 0.1" position={{position}} scale={{scale}} geometry="primitive: plane; width: auto; height: auto;" material="color: #333" text="color: {{color}}; align: left; value: {{value}}; width: 2; side: double"></a-entity>
   {{/if}}
 </template>
