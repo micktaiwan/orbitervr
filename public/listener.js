@@ -26,7 +26,7 @@ AFRAME.registerComponent('listener-right', {
   },
 
   logThumbstick(evt) {
-    velocity.add(new THREE.Vector3(evt.detail.x * 0.001, 0, evt.detail.y * 0.001));
+    velocity.add(new THREE.Vector3(evt.detail.x * 0.0005, 0, evt.detail.y * 0.0005));
   },
 
   getMovementVector: (function () {
@@ -68,7 +68,7 @@ AFRAME.registerComponent('listener-left', {
   },
 
   logThumbstick(evt) {
-    velocity.add(new THREE.Vector3(0, -evt.detail.y * 0.001, 0));
+    velocity.add(new THREE.Vector3(0, -evt.detail.y * 0.0005, 0));
     // rotation
     rotVel += evt.detail.x * 0.001;
     rotVel = Math.max(-0.1, Math.min(0.1, rotVel));
