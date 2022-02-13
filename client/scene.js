@@ -1,4 +1,5 @@
 import { Template } from 'meteor/templating';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 import './helpers'; // define app
 // import '../imports/network/client.js';
@@ -11,6 +12,10 @@ import './debug';
 import './scene.html';
 
 Template.scene.onCreated(function() {
+  if (!Meteor.userId()) {
+    FlowRouter.go('/');
+    return;
+  }
   this.subscribe('userData');
   this.subscribe('players');
   this.subscribe('cubes');
