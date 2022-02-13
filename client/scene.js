@@ -26,7 +26,7 @@ Template.scene.helpers({
     return Meteor.users.find({ 'status.online': true, position: { $exists: true } });
   },
   accounts() {
-    return Meteor.users.find({ }, { sort: { createdAt: -1 } });
+    return Meteor.users.find({ }, { sort: { 'status.lastLogin.date': -1 } });
   },
   cubes() {
     return Cubes.find({});
