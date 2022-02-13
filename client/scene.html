@@ -9,7 +9,7 @@
 
     <a-entity id="rig" player position="0 0 0" rotation="0 0 0">
       <!-- camera -->
-      <a-entity id="camera" camera wasd-controls="fly: true" look-controls player-head position="0 0 0" rotation="0 0 0">
+      <a-entity id="camera" camera wasd-controls="fly: true" look-controls player-head position="0 -0.5 0" rotation="0 0 0">
         {{> debug}}
       </a-entity>
 
@@ -24,15 +24,14 @@
         {{!-- head --}}
         <a-box class="collidable" material="color: #FEA" width="0.20" height="0.25" depth="0.1" position="{{head.position.x}} {{head.position.y}} {{head.position.z}}" rotation="{{head.rotation.x}} {{head.rotation.y}} {{head.rotation.z}}">
           {{!-- username --}}
-          <a-entity position="0 0.3 0" scale="2 2 2" text="color: #fff; align: center; value: {{concat username ' (online: ' status.online ')'}};"></a-entity>
+          <a-entity position="0 0.3 0" scale="2 2 2" text="color: #fff; align: center; value: {{username}};"></a-entity>
         </a-box>
         {{!-- body --}}
-        <a-box position="0 -1 0.05" class="collidable" material="color: #333" width="0.4" height="1.7" depth="0.2"></a-box>
+        <a-box position="0 -1 0.05" class="collidable" material="color: #333" width="0.4" height="1.5" depth="0.2"></a-box>
       </a-entity>
     {{/each}}
 
     <!-- texts -->
-
     {{> text value="Bon ben c'est deja ca" position="-1.5 5.3 -10" color="#fff" scale="2 2 2"}}
     <a-text value="WASD, ou joystick" position="-1.5 5 -10" color="#fff"></a-text>
     <a-sky color="#333333"></a-sky>
@@ -44,9 +43,8 @@
     {{!-- accounts --}}
     <a-text value="Accounts" position="-10 6.5 -12" rotation="0 45 0" color="#fff"></a-text>
     {{#each accounts}}
-      <a-text font="monoid" value="{{pad username 15}} {{formatDate createdAt "dd-MMM-yy HH:mm" }}" position="-10 {{sub 6.2 (concat '0.' @index)}} -12" rotation="0 45 0" scale="0.5 0.5 0.5" color="#ddd"></a-text>
+      <a-text font="monoid" value="{{pad username 15}} {{formatDate createdAt "dd-MMM-yy HH:mm" }}" position="-10 {{sub 6.2 (concat '0.' @index)}} -12" rotation="0 45 0" scale="0.5 0.5 0.5" color="#bbb"></a-text>
     {{/each}}
-
 
 
     <!-- cylinder -->
