@@ -7,11 +7,12 @@ AFRAME.registerComponent('listener-right', {
     const { el } = this;
     this.rig = document.getElementById('rig');
     el.addEventListener('thumbstickmoved', this.logThumbstick.bind(this));
+    el.addEventListener('thumbstickdown', this.thumbstickdown.bind(this));
   },
 
   tick(time, delta) {
-    velocity.multiplyScalar(0.999);
-    rotVel *= 0.99;
+    velocity.multiplyScalar(0.95);
+    rotVel *= 0.95;
 
     // Get movement vector and translate position.
     // this.rig.object3D.position.add(velocity);
@@ -25,7 +26,7 @@ AFRAME.registerComponent('listener-right', {
   },
 
   logThumbstick(evt) {
-    velocity.add(new THREE.Vector3(evt.detail.x * 0.0001, 0, evt.detail.y * 0.0001));
+    velocity.add(new THREE.Vector3(evt.detail.x * 0.001, 0, evt.detail.y * 0.001));
   },
 
   getMovementVector: (function () {
@@ -46,6 +47,11 @@ AFRAME.registerComponent('listener-right', {
       return directionVector;
     };
   }()),
+
+  thumbstickdown() {
+    velocity.multiplyScalar(0.2);
+  },
+
 });
 
 AFRAME.registerComponent('listener-left', {
@@ -54,25 +60,22 @@ AFRAME.registerComponent('listener-left', {
     const { el } = this;
     this.rig = document.getElementById('rig');
     el.addEventListener('thumbstickmoved', this.logThumbstick.bind(this));
-    el.addEventListener('triggerdown', this.triggerdown.bind(this));
-    el.addEventListener('triggertouchstart', this.triggertouchstart.bind(this));
+    // el.addEventListener('triggerdown', this.triggerdown.bind(this));
+    el.addEventListener('thumbstickdown', this.thumbstickdown.bind(this));
     el.addEventListener('surfacedown', this.surfacedown.bind(this));
     el.addEventListener('xbuttondown', this.xbuttondown.bind(this));
   },
 
   logThumbstick(evt) {
-    velocity.add(new THREE.Vector3(0, -evt.detail.y * 0.0001, 0));
+    velocity.add(new THREE.Vector3(0, -evt.detail.y * 0.001, 0));
     // rotation
-    rotVel += evt.detail.x * 0.0005;
-    rotVel = Math.max(-0.01, Math.min(0.01, rotVel));
+    rotVel += evt.detail.x * 0.001;
+    rotVel = Math.max(-0.1, Math.min(0.1, rotVel));
   },
 
-  triggerdown() {
-    log('triggerdown');
-  },
-
-  triggertouchstart() {
-    log('triggertouchstart');
+  thumbstickdown() {
+    velocity.y *= 0.2;
+    rotVel *= 0.2;
   },
 
   surfacedown() {
