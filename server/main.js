@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { Meteor } from 'meteor/meteor';
 import '../imports/api/cubes/collection.js';
+import '../imports/api/cubes/methods.js';
 
 // import '../imports/network/server.js';
 
@@ -19,22 +20,6 @@ Meteor.methods({
     const id = Meteor.userId();
     Meteor.users.update(id, { $set: data });
   },
-  cubesInsert(data) {
-    check(data, Object);
-
-    // check if cube exists at this position
-    const cube = Cubes.findOne({ position: data.position });
-    if (cube) return;
-
-    data.createdAt = new Date();
-    data.ownerId = Meteor.userId();
-    Cubes.insert(data);
-  },
-  undoCubeInsert() {
-    const cube = Cubes.findOne({ ownerId: Meteor.userId() }, { sort: { createdAt: -1 } });
-    if (cube) Cubes.remove(cube._id);
-  },
-
 });
 
 Meteor.onConnection(function(connection) {
