@@ -12,9 +12,9 @@ AFRAME.registerComponent('player', {
     pos.y = Math.round(pos.y * 1000) / 1000;
     pos.z = Math.round(pos.z * 1000) / 1000;
     const rot = this.el.object3D.rotation;
-    rot.x = Math.round(rot.x * 1000) / 1000;
-    rot.y = Math.round(rot.y * 1000) / 1000;
-    rot.z = Math.round(rot.z * 1000) / 1000;
+    rot.x = Math.round(rot.x * 10000) / 10000;
+    rot.y = Math.round(rot.y * 10000) / 10000;
+    rot.z = Math.round(rot.z * 10000) / 10000;
     if (equals(pos, this.oldPos) && equals(rot, this.oldRot)) return;
     this.oldPos.copy(pos);
     this.oldRot.copy(rot);
