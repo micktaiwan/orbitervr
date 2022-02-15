@@ -6,16 +6,16 @@ import stringify from 'fast-json-stable-stringify';
 
 // import '../imports/network/server.js';
 
-Meteor.startup(() => {
-  // Meteor.users.update({ }, { $set: { position: { x: 0, y: 0, z: 0 }, rotation: { x: 0, y: 0, z: 0 }, head: { rotation: { x: 0, y: 0, z: 0 } } } }, { multi: true });
-});
+// remote
+// Meteor.users.update({ }, { $set: { position: { x: 0, y: 0, z: 0 }, rotation: { x: 0, y: 0, z: 0 }, head: { rotation: { x: 0, y: 0, z: 0 } } } }, { multi: true });
+
 const admins = Meteor.settings.admins || [];
 
 const isAdmin = userId => {
   if (!userId && (Meteor.isClient || (DDP._CurrentMethodInvocation.get() || DDP._CurrentPublicationInvocation.get()))) userId = Meteor.userId();
-
   return _.contains(admins, userId);
 };
+
 Meteor.methods({
   log(msg) {
     msg = JSON.stringify(msg);

@@ -64,7 +64,9 @@ module.exports = {
     THREE: 'readonly',
 
     // functions
+    _: 'readonly',
     log: 'readonly',
+    remote: 'writable',
 
     // objects
     app: 'writable',
