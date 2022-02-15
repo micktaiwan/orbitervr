@@ -17,3 +17,7 @@ remote = cmd => {
     console[(_.isArray(r) && r.length ? 'table' : 'log')](r);
   });
 };
+
+window.onerror = function(message, source, lineno, colno, error) {
+  log('onerror', message, source, lineno, colno, error);
+};
