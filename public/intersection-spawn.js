@@ -1,4 +1,14 @@
 AFRAME.registerComponent('intersection-spawn', {
+  dependencies: ['raycaster'],
+  init () {
+    this.el.addEventListener('raycaster-intersected', function (evt) {
+      const intersection = evt.detail.getIntersection(this.el);
+      log(intersection);
+    });
+  },
+});
+
+AFRAME.registerComponent('intersection-spawn-click', {
   schema: {
     default: '',
     parse: AFRAME.utils.styleParser.parse,

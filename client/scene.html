@@ -9,13 +9,13 @@
 
     <a-entity id="rig" player wasd-controls="fly: true" position="0 0 0" rotation="0 0 0">
       <!-- camera -->
-      <a-entity id="camera" camera look-controls player-head position="0 1.5 5" rotation="0 0 0">
+      <a-entity id="camera" camera look-controls player-head position="0 0.5 1" rotation="0 0 0">
         {{> debug}}
       </a-entity>
 
       <!-- hands -->
-      <a-entity laser-controls="hand: right" raycaster="objects: .collidable;" listener-right></a-entity>
-      <a-entity laser-controls="hand: left" raycaster="objects: .collidable;" listener-left>{{> menu}}</a-entity>
+      <a-entity laser-controls="hand: right" raycaster="objects: .spawnable;" listener-right></a-entity>
+      <a-entity laser-controls="hand: left" raycaster="objects: .spawnable;" listener-left>{{> menu}}</a-entity>
     </a-entity>
 
     <!-- players -->
@@ -34,12 +34,13 @@
 
     <!-- cubes -->
     {{#each cubes}}
-      <a-box shadow intersection-spawn="event: click;" position="{{position.x}} {{position.y}} {{position.z}}" rotation="{{rotation.x}} {{rotation.y}} {{rotation.z}}" class="collidable" random-color width="0.5" height="0.5" depth="0.5" mass="100" ammo-body="type: dynamic; emitCollisionEvents: true;" ammo-shape="type: box"></a-box>
+      <a-box id="{{_id}}" shadow position="{{position.x}} {{position.y}} {{position.z}}" rotation="{{rotation.x}} {{rotation.y}} {{rotation.z}}" class="collidable spawnable" intersection-spawn-click="event: click;" random-color width="0.5" height="0.5" depth="0.5" mass="100" ammo-body="type: dynamic; emitCollisionEvents: true;" ammo-shape="type: box"></a-box>
     {{/each}}
 
     <!-- texts -->
-    {{> text value="Bon ben c'est deja ca" position="-1.5 5.3 -10" color="#fff" scale="2 2 2"}}
-    <a-text value="WASD, ou joystick" position="-1.5 5 -10" color="#fff" side="double"></a-text>
+    <a-text value="Trigger: put a cube" position="-1.5 5.3 -10" color="#fff" side="double"></a-text>
+    <a-text value="A: remove a cube" position="-1.5 5 -10" color="#fff" side="double"></a-text>
+    <a-text value="Y: undo" position="-1.5 4.7 -10" color="#fff" side="double"></a-text>
     <a-sky color="#333333"></a-sky>
 
 
@@ -81,7 +82,7 @@
     <a-box position="0 0.5 -10" rotation="0 0 0" color="#F90" shadow velocity="0 0 0" toggle-velocity="axis: x; min: -10; max: 10;" ammo-body="type: kinematic; emitCollisionEvents: true;" ammo-shape="type: box" width="1" height="1" depth="1"></a-box>
 
     <!-- ground -->
-    <a-cylinder id="ground" shadow="cast: false; receive: true" ammo-body="type: static" ammo-shape="type: cylinder" class="collidable" src="#groundTexture" radius="32" height="0.1" intersection-spawn="event: click;"></a-cylinder>
+    <a-cylinder id="ground" shadow="cast: false; receive: true" ammo-body="type: static" ammo-shape="type: cylinder" class="collidable spawnable" intersection-spawn-click="event: click;" src="#groundTexture" radius="32" height="0.1"></a-cylinder>
 
     <a-sky id="bg" radius="30" src="#skyTexture" theta-length="90"></a-sky>
   </a-scene>

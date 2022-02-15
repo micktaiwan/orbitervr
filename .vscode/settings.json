@@ -12,15 +12,18 @@
     "ostrio",
     "padder",
     "raycaster",
+    "spawnable",
     "surfacedown",
     "templating",
     "Thumbstick",
+    "thumbstickdown",
     "thumbstickmoved",
     "triggerdown",
     "triggertouchstart",
     "voxel",
     "WASD",
-    "xbuttondown"
+    "xbuttondown",
+    "ybuttondown"
   ],
   "cSpell.ignorePaths": ["**/node_modules/**", "**/vendor/**", "*.json"]
 }

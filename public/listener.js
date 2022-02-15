@@ -2,12 +2,16 @@ const velocity = new THREE.Vector3(0, 0.001, 0.001);
 let rotVel = 0;
 
 AFRAME.registerComponent('listener-right', {
+  dependencies: ['raycaster'],
+
   init() {
     // console.log('listener');
     const { el } = this;
     this.rig = document.getElementById('rig');
     el.addEventListener('thumbstickmoved', this.logThumbstick.bind(this));
     el.addEventListener('thumbstickdown', this.thumbstickdown.bind(this));
+    el.addEventListener('triggerdown', this.triggerdown.bind(this)); // put cube
+    el.addEventListener('abuttondown', this.abuttondown.bind(this)); // delete cube
   },
 
   tick(time, delta) {
@@ -52,6 +56,32 @@ AFRAME.registerComponent('listener-right', {
     velocity.multiplyScalar(0.2);
   },
 
+  triggerdown() {
+    const { raycaster } = this.el.components;
+    const intersects = raycaster.intersections;
+    if (!intersects.length > 0) return;
+    const i = intersects[0];
+    const { point } = i;
+    // stick to the grid
+    const snap = { x: 0.5, y: 0.5, z: 0.5 };
+    const offset = { x: 0.25, y: 0.25, z: 0.25 };
+    point.x = Math.floor(point.x / snap.x) * snap.x + offset.x;
+    point.y = Math.floor(point.y / snap.y) * snap.y + offset.y;
+    point.z = Math.floor(point.z / snap.z) * snap.z + offset.z;
+
+    Meteor.call('cubesInsert', { position: point, color: '#666' });
+  },
+
+  abuttondown() {
+    const { raycaster } = this.el.components;
+    const els = raycaster.intersectedEls;
+    if (!els.length) return;
+    const { id } = els[0];
+    if (id === 'ground') return;
+    log(id);
+    Meteor.call('cubesRemove', id);
+  },
+
 });
 
 AFRAME.registerComponent('listener-left', {
@@ -60,7 +90,6 @@ AFRAME.registerComponent('listener-left', {
     const { el } = this;
     this.rig = document.getElementById('rig');
     el.addEventListener('thumbstickmoved', this.logThumbstick.bind(this));
-    // el.addEventListener('triggerdown', this.triggerdown.bind(this));
     el.addEventListener('thumbstickdown', this.thumbstickdown.bind(this));
     el.addEventListener('surfacedown', this.surfacedown.bind(this));
     el.addEventListener('xbuttondown', this.xbuttondown.bind(this));

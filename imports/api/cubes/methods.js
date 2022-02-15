@@ -14,4 +14,9 @@ Meteor.methods({
     const cube = Cubes.findOne({ ownerId: Meteor.userId() }, { sort: { createdAt: -1 } });
     if (cube) Cubes.remove(cube._id);
   },
+  cubesRemove(id) {
+    check(id, String);
+    const cube = Cubes.findOne(id);
+    if (cube && cube.ownerId === Meteor.userId()) Cubes.remove(id);
+  },
 });
