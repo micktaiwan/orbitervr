@@ -2,13 +2,20 @@
 import { Meteor } from 'meteor/meteor';
 import '../imports/api/cubes/collection.js';
 import '../imports/api/cubes/methods.js';
+import stringify from 'fast-json-stable-stringify';
 
 // import '../imports/network/server.js';
 
 Meteor.startup(() => {
   // Meteor.users.update({ }, { $set: { position: { x: 0, y: 0, z: 0 }, rotation: { x: 0, y: 0, z: 0 }, head: { rotation: { x: 0, y: 0, z: 0 } } } }, { multi: true });
 });
+const admins = Meteor.settings.admins || [];
 
+const isAdmin = userId => {
+  if (!userId && (Meteor.isClient || (DDP._CurrentMethodInvocation.get() || DDP._CurrentPublicationInvocation.get()))) userId = Meteor.userId();
+
+  return _.contains(admins, userId);
+};
 Meteor.methods({
   log(msg) {
     msg = JSON.stringify(msg);
@@ -19,6 +26,25 @@ Meteor.methods({
     check(data, Object);
     const id = Meteor.userId();
     Meteor.users.update(id, { $set: data });
+  },
+  remote(str) {
+    check(str, String);
+    if (!isAdmin()) return '🤬';
+
+    console.log('eval from method', { userId: Meteor.userId(), str });
+    let res;
+    try {
+      res = Promise.await(eval(str));
+      if (res && res.fetch) res = res.fetch();
+      if (res && res.toArray) res = Promise.await(res.toArray());
+      if (res && typeof res.toJSON === 'function') res = res.result || res.toJSON();
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log('eval from method FAILED:', { err });
+      return err.stack;
+    }
+    console.log('eval from method succeed');
+    return stringify(res, { cycles: true });
   },
 });
 
