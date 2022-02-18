@@ -21,6 +21,11 @@ Template.scene.onCreated(function() {
   this.subscribe('cubes');
 });
 
+Template.scene.onRendered(function() {
+  $('#scene').append('<a-entity position="-5 0 -6" gltf-model="#car" scale="1 1 1"></a-entity>');
+  $('#scene').append('<a-entity position="-8 1 -6" gltf-model="#wooden-crate" scale="1 1 1"></a-entity>');
+});
+
 Template.scene.helpers({
   players() {
     return Meteor.users.find({ 'status.online': true, position: { $exists: true } });

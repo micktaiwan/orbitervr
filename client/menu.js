@@ -8,7 +8,8 @@ Template.menu.onRendered(function() {});
 Template.menu.helpers({});
 
 Template.menu.events({
-  'click #menu'() {
+  'click #menu'(e) {
+    e.preventDefault();
     log('menu clicked');
   },
   'click #resetpos'() {

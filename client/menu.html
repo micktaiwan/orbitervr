@@ -1,7 +1,9 @@
 <template name="menu">
   {{#if isMenuOpen}}
-    {{> text position="0.30 -0.03 0" value="menu" scale="0.25 0.25 0.25" id="menu" class="collidable" }}
-    {{> text position="0.30 -0.06 0" value="editor" scale="0.25 0.25 0.25"}}
-    {{> text position="0.30 -0.09 0" value="reset position" scale="0.25 0.25 0.25" id="resetpos" class="collidable"}}
+    <a-box position="0.35 0 0" rotation="-45 0 0" scale="0.5 0.1 0.01" color="#4CC3D9" id="menu" class="collidable spawnable">
+      {{> text position="0 0.5 0.7" rotation="0 0 0" value="menu" scale="0.5 1 0.5"}}
+      {{> text position="0 0.25 0.7" value="editor" scale="0.5 1 0.5"}}
+      {{> text position="0 0 0.7" value="reset position" scale="0.5 1 0.5" id="resetpos" class="collidable spawnable"}}
+    </a-box>
   {{/if}}
 </template>

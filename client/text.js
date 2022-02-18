@@ -11,6 +11,10 @@ Template.text.helpers({
     return this.position || '0 0 0';
   },
 
+  rotation() {
+    return this.rotation || '0 0 0';
+  },
+
   value() {
     return this.value || '';
   },
