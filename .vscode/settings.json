@@ -1,9 +1,15 @@
 {
   "cSpell.words": [
+    "abuttondown",
     "AFRAME",
     "autofetch",
     "collidable",
     "Dayd",
+    "grabbable",
+    "gripdown",
+    "gripend",
+    "gripstart",
+    "gripup",
     "meteorjs",
     "monoid",
     "nengi",

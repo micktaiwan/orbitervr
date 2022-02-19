@@ -19,5 +19,6 @@ remote = cmd => {
 };
 
 window.onerror = function(message, source, lineno, colno, error) {
+  if (!message) return;
   log('onerror', message, source, lineno, colno, error);
 };

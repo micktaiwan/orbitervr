@@ -16,7 +16,7 @@
       </a-entity>
 
       <!-- hands -->
-      <a-entity laser-controls="hand: right" raycaster="objects: .spawnable;" listener-right></a-entity>
+      <a-entity laser-controls="hand: right" raycaster="objects: .grabbable;" listener-right></a-entity>
       <a-entity laser-controls="hand: left" raycaster="objects: .spawnable;" listener-left>{{> menu}}</a-entity>
     </a-entity>
 
@@ -36,7 +36,7 @@
 
     <!-- cubes -->
     {{#each cubes}}
-      <a-box id="{{_id}}" shadow position="{{position.x}} {{position.y}} {{position.z}}" rotation="{{rotation.x}} {{rotation.y}} {{rotation.z}}" class="collidable spawnable" random-color width="0.5" height="0.5" depth="0.5" mass="100" ammo-body="type: dynamic; emitCollisionEvents: true;" ammo-shape="type: box"></a-box>
+      <a-box id="{{_id}}" shadow position="{{position.x}} {{position.y}} {{position.z}}" rotation="{{rotation.x}} {{rotation.y}} {{rotation.z}}" class="collidable spawnable grabbable" random-color width="0.5" height="0.5" depth="0.5"></a-box>
     {{/each}}
 
     <!-- texts -->
@@ -49,7 +49,7 @@
     {{!-- lights --}}
 
     <a-entity light="type: point; color: #fff; intensity: 0.4; distance: 0; castShadow: true; shadowCameraVisible: false;" position="0 1 0"></a-entity>
-    <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.8; castShadow: true; shadowCameraVisible: false;" position="0 1 0"></a-entity>
+    <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.8;" position="0 1 0"></a-entity>
 
     <a-entity animation="property: rotation; to: 0 0 360; dur: 360000; easing: linear; loop: true">
       <a-entity mixin="sun" position="31 0 0"></a-entity>

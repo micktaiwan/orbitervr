@@ -12,6 +12,8 @@ AFRAME.registerComponent('listener-right', {
     el.addEventListener('thumbstickdown', this.thumbstickdown.bind(this));
     el.addEventListener('triggerdown', this.triggerdown.bind(this)); // put cube
     el.addEventListener('abuttondown', this.abuttondown.bind(this)); // delete cube
+    el.addEventListener('gripdown', this.gripstart.bind(this)); // grab object
+    el.addEventListener('gripup', this.gripend.bind(this)); // release object
   },
 
   tick(time, delta) {
@@ -26,6 +28,15 @@ AFRAME.registerComponent('listener-right', {
 
     if (this.rig.object3D.position.y < 1.7) {
       this.rig.object3D.position.y = 1.7;
+    }
+
+    // move grabbed object to hand position
+    if (this.grabbed) {
+      const rigPos = this.rig.object3D.position;
+      const handPos = this.el.object3D.position;
+      const newPos = rigPos.clone().add(handPos);
+      this.grabbed.object3D.position.copy(newPos);
+      this.grabbed.object3D.rotation.copy(this.el.object3D.rotation);
     }
   },
 
@@ -82,6 +93,25 @@ AFRAME.registerComponent('listener-right', {
     Meteor.call('cubesRemove', id);
   },
 
+  gripstart(e) {
+    log('gripstart', e.type);
+    const { raycaster } = this.el.components;
+    const objs = raycaster.intersectedEls;
+    if (!objs.length) return;
+    this.grabbed = objs[0];
+    this.grabbed.setAttribute('grabbed', true);
+    this.grabbed.setAttribute('scale', '0.25 0.25 0.25');
+  },
+
+  gripend(e) {
+    log('gripend', e.type);
+    if (!this.grabbed) return;
+    this.grabbed.removeAttribute('grabbed');
+    this.grabbed.setAttribute('scale', '1 1 1');
+    this.grabbed.setAttribute('rotation', '0 0 0');
+    this.grabbed = undefined;
+  },
+
 });
 
 AFRAME.registerComponent('listener-left', {
@@ -119,4 +149,5 @@ AFRAME.registerComponent('listener-left', {
   ybuttondown() {
     Meteor.call('undoCubeInsert');
   },
+
 });
