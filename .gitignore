@@ -1,3 +1,4 @@
 .prod/
+.idea
 node_modules/
 settings-dev.json

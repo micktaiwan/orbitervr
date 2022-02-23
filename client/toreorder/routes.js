@@ -8,9 +8,9 @@ FlowRouter.route('/', {
   },
 });
 
-FlowRouter.route('/scene', {
-  name: 'home',
+FlowRouter.route('/game', {
+  name: 'game',
   action() {
-    BlazeLayout.render('layout', { main: 'scene' });
+    BlazeLayout.render('layout', { main: 'game' });
   },
 });
