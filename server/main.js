@@ -4,7 +4,7 @@ import '../imports/api/cubes/collection.js';
 import '../imports/api/cubes/methods.js';
 import stringify from 'fast-json-stable-stringify';
 
-// import '../imports/network/server.js';
+import '../imports/network/server.js';
 
 // remote
 // Meteor.users.update({ }, { $set: { position: { x: 0, y: 0, z: 0 }, rotation: { x: 0, y: 0, z: 0 }, head: { rotation: { x: 0, y: 0, z: 0 } } } }, { multi: true });

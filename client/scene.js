@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 import './helpers'; // define app
-// import '../imports/network/client.js';
+import '../imports/network/client.js';
 import '../imports/classes/menu.js';
 
 import './registerHelpers';

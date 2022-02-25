@@ -1,13 +1,14 @@
-// import nengi from 'nengi';
-// import config from './common';
+import nengi from 'nengi';
+import config from './common';
 
-// const instance = new nengi.Instance(config, { port: 8080 });
-// instance.onConnect((client, clientData, callback) => {
-//   console.log('onConnect', client, clientData);
-// });
-// instance.onDisconnect((client) => {
-//   console.log('onDisconnect', client);
-// });
+const instance = new nengi.Instance(config, { port: 8080 });
+instance.onConnect((client, clientData, callback) => {
+  console.log('onConnect', client.id, clientData);
+  callback({ accepted: true, text: 'Welcome!' });
+});
+instance.onDisconnect(client => {
+  console.log('onDisconnect', client.id);
+});
 
 // instance.addEntity(entity);
 // instance.removeEntity(entity);
