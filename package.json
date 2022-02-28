@@ -16,7 +16,7 @@
     "jquery": "^3.6.0",
     "luxon": "^2.3.0",
     "meteor-node-stubs": "^1.1.0",
-    "nengi": "^1.26.0"
+    "nengi": "https://github.com/micktaiwan/nengi/tarball/f16ff42"
   },
   "meteor": {
     "mainModule": {
